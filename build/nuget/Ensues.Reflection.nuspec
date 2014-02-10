@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Ensues.Reflection</id>
+    <version>0.0.0</version>
+    <authors>Ken Yourek</authors>
+    <owners>Ken Yourek</owners>
+    <licenseUrl>https://github.com/kyourek/Ensues.Reflection/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/kyourek/Ensues.Reflection</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+        Ensues.Reflection provides methods for resolving .NET member names to strings.
+        So, the following code will put &quot;MyProperty&quot; into &quot;propertyName&quot;.
+<![CDATA[
+var propertyName = myObject.GetMemberName(mo => mo.MyProperty);
+]]>
+    </description>
+    <releaseNotes>
+        Ensues.Reflection was formerly NetNames.
+    </releaseNotes>
+    <copyright>Copyright Ken Yourek 2014</copyright>
+    <tags>reflection members naming</tags>
+  </metadata>
+</package>

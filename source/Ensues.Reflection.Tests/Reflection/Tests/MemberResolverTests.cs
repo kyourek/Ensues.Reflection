@@ -82,18 +82,6 @@ namespace Ensues.Reflection.Tests {
         }
 
         [Test]
-        public void GetProperty_UsesBindingFlags() {
-            var mr = new MemberResolver<MockObject>();
-            var expected = typeof(MockObject).GetProperty("StringProperty", BindingFlags.Public | BindingFlags.Instance);
-            var actual = mr.GetProperty(o => o.StringProperty, BindingFlags.Public | BindingFlags.Instance);
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(expected, actual);
-
-            var doesNotExist = mr.GetProperty(o => o.StringProperty, BindingFlags.Public | BindingFlags.Static);
-            Assert.IsNull(doesNotExist);
-        }
-
-        [Test]
         public void GetField_ReturnsTypeFieldInfo() {            
             var expected = typeof(MockObject).GetField("BoolField");
             var actual = new MemberResolver<MockObject>().GetField(o => o.BoolField);
@@ -102,35 +90,11 @@ namespace Ensues.Reflection.Tests {
         }
 
         [Test]
-        public void GetField_UsesBindingFlags() {
-            var mr = new MemberResolver<MockObject>();
-            var expected = typeof(MockObject).GetField("StringField", BindingFlags.Public | BindingFlags.Instance);
-            var actual = mr.GetField(o => o.StringField, BindingFlags.Public | BindingFlags.Instance);
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(expected, actual);
-
-            var doesNotExist = mr.GetField(o => o.StringField, BindingFlags.Public | BindingFlags.Static);
-            Assert.IsNull(doesNotExist);
-        }
-
-        [Test]
         public void GetMethod_ReturnsTypeMethodInfo() {
             var expected = typeof(MockObject).GetMethod("StringMethod");
             var actual = new MemberResolver<MockObject>().GetMethod(o => o.StringMethod());
             Assert.IsNotNull(actual);
             Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void GetMethod_UsesBindingFlags() {
-            var mr = new MemberResolver<MockObject>();
-            var expected = typeof(MockObject).GetMethod("Void1ParamMethod", BindingFlags.Public | BindingFlags.Instance);
-            var actual = mr.GetMethod(o => o.Void1ParamMethod(0), BindingFlags.Public | BindingFlags.Instance);
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(expected, actual);
-
-            var doesNotExist = mr.GetMethod(o => o.Void1ParamMethod(0), BindingFlags.Public | BindingFlags.Static);
-            Assert.IsNull(doesNotExist);
         }
     }
 }

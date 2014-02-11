@@ -4,6 +4,10 @@ using System.Reflection;
 
 namespace Ensues.Reflection {
 
+    /// <summary>
+    /// A class that provides methods for resolving member names 
+    /// from instances and derivatives of <see cref="T:LambdaExpression"/>.
+    /// </summary>
     public class MemberResolver {
 
         private string GetMemberName(MemberExpression expression) {
@@ -24,6 +28,16 @@ namespace Ensues.Reflection {
             return method.Name;
         }
 
+        /// <summary>
+        /// Gets the name of the member used in the <paramref name="expression"/>.
+        /// </summary>
+        /// <param name="expression">
+        /// The <see cref="T:LambdaExpression"/> that calls the class member
+        /// whose name should be returned.
+        /// </param>
+        /// <returns>
+        /// The name of the member used in the <paramref name="expression"/>.
+        /// </returns>   
         public virtual string GetMemberName(LambdaExpression expression) {
             if (null == expression) throw new ArgumentNullException("expression");
 
@@ -59,38 +73,102 @@ namespace Ensues.Reflection {
         }
     }
 
+    /// <summary>
+    /// A class that provides methods for resolving member names 
+    /// from instances and derivatives of <see cref="T:LambdaExpression"/>.
+    /// </summary>
     public class MemberResolver<T> : MemberResolver {
 
+        /// <summary>
+        /// Gets the name of the member used in the <paramref name="selector"/>.
+        /// </summary>
+        /// <typeparam name="TMember">
+        /// The <see cref="T:Type"/> of the member.
+        /// </typeparam>
+        /// <param name="selector">
+        /// An expression that uses the member whose name is returned.
+        /// </param>
+        /// <returns>
+        /// The name of the member used in the <paramref name="selector"/>.
+        /// </returns>
+        /// <exception cref="T:InvalidTargetMemberException">
+        /// Thrown if a member name cannot be resolved from the <paramref name="selector"/>.
+        /// </exception>
         public string GetMemberName<TMember>(Expression<Func<T, TMember>> selector) {
             return GetMemberName((LambdaExpression)selector);
         }
 
+        /// <summary>
+        /// Gets the name of the member used in the <paramref name="selector"/>.
+        /// </summary>
+        /// <typeparam name="TMember">
+        /// The <see cref="T:Type"/> of the member.
+        /// </typeparam>
+        /// <param name="selector">
+        /// An expression that uses the member whose name is returned.
+        /// </param>
+        /// <returns>
+        /// The name of the member used in the <paramref name="selector"/>.
+        /// </returns>
+        /// <exception cref="T:InvalidTargetMemberException">
+        /// Thrown if a member name cannot be resolved from the <paramref name="selector"/>.
+        /// </exception>
         public string GetMemberName<TMember>(Expression<Action<T>> selector) {
             return GetMemberName((LambdaExpression)selector);
         }
 
+        /// <summary>
+        /// Gets the property used in the <paramref name="selector"/>.
+        /// </summary>
+        /// <typeparam name="TProperty">
+        /// The <see cref="T:Type"/> of the property.
+        /// </typeparam>
+        /// <param name="selector">
+        /// An expression that uses the property.
+        /// </param>
+        /// <returns>
+        /// The <see cref="T:PropertyInfo"/> of the property used in the <paramref name="selector"/>.
+        /// </returns>
+        /// <exception cref="T:InvalidTargetMemberException">
+        /// Thrown if a member name cannot be resolved from the <paramref name="selector"/>.
+        /// </exception>
         public PropertyInfo GetProperty<TProperty>(Expression<Func<T, TProperty>> selector) {
             return typeof(T).GetProperty(GetMemberName(selector));
         }
 
-        public PropertyInfo GetProperty<TProperty>(Expression<Func<T, TProperty>> selector, BindingFlags bindingAttr) {
-            return typeof(T).GetProperty(GetMemberName(selector), bindingAttr);
-        }
-
+        /// <summary>
+        /// Gets the field used in the <paramref name="selector"/>.
+        /// </summary>
+        /// <typeparam name="TField">
+        /// The <see cref="T:Type"/> of the field.
+        /// </typeparam>
+        /// <param name="selector">
+        /// An expression that uses the field.
+        /// </param>
+        /// <returns>
+        /// The <see cref="T:FieldInfo"/> of the field used in the <paramref name="selector"/>.
+        /// </returns>
+        /// <exception cref="T:InvalidTargetMemberException">
+        /// Thrown if a member name cannot be resolved from the <paramref name="selector"/>.
+        /// </exception>
         public FieldInfo GetField<TField>(Expression<Func<T, TField>> selector) {
             return typeof(T).GetField(GetMemberName(selector));
         }
 
-        public FieldInfo GetField<TField>(Expression<Func<T, TField>> selector, BindingFlags bindingAttr) {
-            return typeof(T).GetField(GetMemberName(selector), bindingAttr);
-        }
-
+        /// <summary>
+        /// Gets the method used in the <paramref name="selector"/>.
+        /// </summary>
+        /// <param name="selector">
+        /// An expression that uses the method.
+        /// </param>
+        /// <returns>
+        /// The <see cref="T:MethodInfo"/> of the method used in the <paramref name="selector"/>.
+        /// </returns>
+        /// <exception cref="T:InvalidTargetMemberException">
+        /// Thrown if a member name cannot be resolved from the <paramref name="selector"/>.
+        /// </exception>
         public MethodInfo GetMethod(Expression<Action<T>> selector) {
             return typeof(T).GetMethod(GetMemberName(selector));
-        }
-
-        public MethodInfo GetMethod(Expression<Action<T>> selector, BindingFlags bindingAttr) {
-            return typeof(T).GetMethod(GetMemberName(selector), bindingAttr);
         }
     }
 }

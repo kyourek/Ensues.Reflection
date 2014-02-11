@@ -79,6 +79,8 @@ namespace Ensues.Reflection {
     /// </summary>
     public class MemberResolver<T> : MemberResolver {
 
+        internal static readonly MemberResolver<T> Default = new MemberResolver<T>();
+
         /// <summary>
         /// Gets the name of the member used in the <paramref name="selector"/>.
         /// </summary>

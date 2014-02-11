@@ -37,12 +37,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\Tests\ObjectMemberTests.cs" />
+    <Compile Include="Objects\Tests\ObjectReflectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\Tests\MemberNameResolverTests.cs" />
-    <Compile Include="Reflection\Tests\MemberNameTests.cs" />
     <Compile Include="Reflection\Tests\MemberResolverTests.cs" />
-    <Compile Include="Reflection\Tests\Mocks\MockNameResolver.cs" />
     <Compile Include="Reflection\Tests\Mocks\MockObject.cs" />
   </ItemGroup>
   <ItemGroup>

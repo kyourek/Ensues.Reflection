@@ -36,12 +36,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\ObjectMember.cs" />
+    <Compile Include="Objects\ObjectReflection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\InvalidTargetMemberException.cs" />
     <Compile Include="Reflection\MemberResolver.cs" />
-    <Compile Include="Reflection\MemberName.cs" />
-    <Compile Include="Reflection\MemberNameResolver.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

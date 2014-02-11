@@ -20,8 +20,7 @@ namespace Ensues.Reflection {
         /// Creates a new instance of the error.
         /// </summary>
         /// <param name="expression">
-        /// The <see cref="T:LambdaExpression"/> for which the member
-        /// name resolution failed.
+        /// The <see cref="T:LambdaExpression"/> for which the member name resolution failed.
         /// </param>
         public InvalidTargetMemberException(LambdaExpression expression) {
             _Expression = expression;

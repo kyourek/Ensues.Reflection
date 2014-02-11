@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Objects\Tests\ObjectReflectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\Tests\InvalidTargetMemberExceptionTests.cs" />
     <Compile Include="Reflection\Tests\MemberResolverTests.cs" />
     <Compile Include="Reflection\Tests\Mocks\MockObject.cs" />
   </ItemGroup>

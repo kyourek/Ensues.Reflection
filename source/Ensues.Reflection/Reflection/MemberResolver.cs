@@ -84,5 +84,13 @@ namespace Ensues.Reflection {
         public FieldInfo GetField<TField>(Expression<Func<T, TField>> selector, BindingFlags bindingAttr) {
             return typeof(T).GetField(GetMemberName(selector), bindingAttr);
         }
+
+        public MethodInfo GetMethod(Expression<Action<T>> selector) {
+            return typeof(T).GetMethod(GetMemberName(selector));
+        }
+
+        public MethodInfo GetMethod(Expression<Action<T>> selector, BindingFlags bindingAttr) {
+            return typeof(T).GetMethod(GetMemberName(selector), bindingAttr);
+        }
     }
 }

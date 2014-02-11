@@ -1,4 +1,5 @@
-# Python cache
+# Python cache and .pyc files
+*.pyc
 __pycache__
 
 # NUnit test results

@@ -1,0 +1,7 @@
+# Output files copied to NuGet lib directories
+*.dll
+*.xml
+*.pdb
+
+# NuGet package files
+*.nupkg

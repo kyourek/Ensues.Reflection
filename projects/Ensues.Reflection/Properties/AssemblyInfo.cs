@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.3")]
 [assembly: AssemblyInformationalVersion("1.0.0")]
 
 [assembly: InternalsVisibleTo("Ensues.Reflection.Tests")]

@@ -3,34 +3,30 @@ Ensues.Reflection
 
 (Formerly [NetNames][1])
 
-**Static and extension methods for resolving .NET member names to strings.**
+**Methods for resolving .NET member names to strings.**
 
 For example, consider the following class:
 
-    class Members {
-        public int MyField = default(int);
-        public bool MyProperty {
-            get { throw new NotSupportedException(); }
-        }
-        public object MyFunc() {
-            throw new NotSupportedException();
-        }
-        public void MyAction(string param) {
-            throw new NotSupportedException();
+    class MockObject {
+        public bool BoolField = default(bool);
+        public string StringProperty { get { throw new NotSupportedException(); } }
+        public void VoidMethod() { throw new NotSupportedException(); }
+        public string String1ParamMethod(object param1) { 
+            throw new NotSupportedException(); 
         }
     }
 
-With the namespace `Ensues.Reflection.Objects` used, the following program:
+With the namespace `Ensues.Objects` used, the following program:
 
     class Program {
         static void Main(string[] args) {
 
-            var instance = new Members();
+            var instance = new MockObject();
 
-            Console.WriteLine(instance.GetMemberName(i => i.MyField));
-            Console.WriteLine(instance.GetMemberName(i => i.MyProperty));
-            Console.WriteLine(instance.GetMemberName(i => i.MyFunc()));
-            Console.WriteLine(instance.GetMemberName(i => i.MyAction("")));
+            Console.WriteLine(instance.GetMemberName(i => i.BoolField));
+            Console.WriteLine(instance.GetMemberName(i => i.StringProperty));
+            Console.WriteLine(instance.GetMemberName(i => i.VoidMethod()));
+            Console.WriteLine(instance.GetMemberName(i => i.String1ParamMethod("")));
 
             Console.ReadKey();
         }
@@ -38,16 +34,17 @@ With the namespace `Ensues.Reflection.Objects` used, the following program:
 
 produces the output:
 
-    MyField
-    MyProperty
-    MyFunc
-    MyAction
+    BoolField
+    StringProperty
+    VoidMethod
+    String1ParamMethod
 
-The `Ensues.Reflection` namespace also provides static methods for getting member names. These can be used without a type instance.
+The `Ensues.Reflection` namespace also provides the `MemberResolver` class for getting member names without a type instance.
 
-    Console.WriteLine(MemberName<Members>.Of(m => m.MyField));
-    Console.WriteLine(MemberName<Members>.Of(m => m.MyProperty));
-    Console.WriteLine(MemberName<Members>.Of(m => m.MyFunc()));
-    Console.WriteLine(MemberName<Members>.Of(m => m.MyAction("")));
+    var mr = new MemberResolver<MockObject>();
+    Console.WriteLine(mr.GetMemberName(m => m.BoolField));
+    Console.WriteLine(mr.GetMemberName(m => m.StringProperty));
+    Console.WriteLine(mr.GetMemberName(m => m.VoidMethod()));
+    Console.WriteLine(mr.GetMemberName(m => m.String1ParamMethod("")));
 
   [1]: http://code.google.com/p/net-names/

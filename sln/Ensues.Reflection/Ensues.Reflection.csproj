@@ -40,6 +40,8 @@
     <Compile Include="Reflection\InvalidTargetMemberException.cs" />
     <Compile Include="Reflection\MemberResolver.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="nuget\Ensues.Reflection.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@ Ensues.Reflection
 
 For example, consider the following class:
 
-    class MockObject {
+    class Example {
         public bool BoolField = default(bool);
         public string StringProperty { get { throw new NotSupportedException(); } }
         public void VoidMethod() { throw new NotSupportedException(); }
@@ -21,7 +21,7 @@ With the namespace `Ensues.Objects` used, the following program:
     class Program {
         static void Main(string[] args) {
 
-            var instance = new MockObject();
+            var instance = new Example();
 
             Console.WriteLine(instance.GetMemberName(i => i.BoolField));
             Console.WriteLine(instance.GetMemberName(i => i.StringProperty));
@@ -41,7 +41,7 @@ produces the output:
 
 The `Ensues.Reflection` namespace also provides the `MemberResolver` class for getting member names without a type instance.
 
-    var mr = new MemberResolver<MockObject>();
+    var mr = new MemberResolver<Example>();
     Console.WriteLine(mr.GetMemberName(m => m.BoolField));
     Console.WriteLine(mr.GetMemberName(m => m.StringProperty));
     Console.WriteLine(mr.GetMemberName(m => m.VoidMethod()));
